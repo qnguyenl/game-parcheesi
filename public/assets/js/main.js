@@ -8,6 +8,7 @@ function autoPlay() {
     plrNext = Number(Object.keys(plrArray).find(key => plrArray[key] === playerFirst));
     localStorage.removeItem('text_log');
     this.intervalGame = setInterval(this.run.bind(this), 500);
+    document.getElementById("btnAutoPlay").disabled = true;
     //run();
 }
 
@@ -39,7 +40,10 @@ function run() {
         }
     });
     // End game
-    if (endGame) { return false }
+    if (endGame) {
+        document.getElementById("btnAutoPlay").disabled = false;
+        return false
+    }
 
     // Continue game
     const diceValue = diceArray[Math.floor(Math.random() * diceArray.length)];
